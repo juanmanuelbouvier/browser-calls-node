@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=test-app* node ./bin/www",
-    "test": "NODE_ENV=test TWILIO_APP_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX TWILIO_AUTH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX TWILIO_ACCOUNT_SID=ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX MONGO_URL=mongodb://localhost:27017/test ./node_modules/.bin/mocha test"
+    "test": "NODE_ENV=test TWILIO_APP_SID=AP8d79423929ecc2a6a5c7b3c2c7db3265 TWILIO_AUTH_TOKEN=db919aa6a89a838e16fb3c01d25fa434 TWILIO_ACCOUNT_SID=AC4e2e1af209c7ec7a795d01bef670f4f8 MONGO_URL=mongodb://localhost:27017/test ./node_modules/.bin/mocha test"
   },
   "description": "A sample application which shows you how to make and receive phone calls with a browser and Twilio Client",
   "author": {
@@ -24,7 +24,9 @@
     "twiml",
     "webhooks"
   ],
-  "engines" : { "node" : ">=4.6.2" },
+  "engines": {
+    "node": ">=4.6.2"
+  },
   "dependencies": {
     "body-parser": "~1.15.2",
     "connect-flash": "^0.1.1",
