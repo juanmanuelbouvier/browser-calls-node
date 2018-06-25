@@ -16,7 +16,7 @@
   }
 }
 
-.answer-button, .call-support-button {
+.answer-button, .call-expert-button {
     width: 48%;
     float: left;
 }
@@ -26,12 +26,7 @@
     float: right;
 }
 
-.btn-block {
-    background-color: rgb(217, 107, 58);
-    border-color: rgb(217, 107, 58);
-}
-
-.call-button, .answer-button {
+.btn-block, .call-expert-button, .call-customer-button {
     background-color: rgb(217, 107, 58);
     border-color: rgb(217, 107, 58);
 }

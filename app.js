@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 
 var home = require('./routes/home');
 var call = require('./routes/call');
-var support = require('./routes/support');
+var dashboard = require('./routes/dashboard');
 var tickets = require('./routes/tickets');
 var token = require('./routes/token');
 
@@ -45,7 +45,7 @@ app.use(function(req, res, next){
 app.use('/', home);
 app.use('/home', home);
 app.use('/call', call);
-app.use('/support', support);
+app.use('/dashboard', dashboard);
 app.use('/tickets', tickets);
 app.use('/token', token);
 

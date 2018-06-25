@@ -14,29 +14,29 @@ block content
       p
         | ¡Hablá con uno de nuestros expertos!
       p
-        a.btn.btn-primary.btn-lg.btn-block(onclick="callExpert()") Hablar con un experto
+        a.btn.btn-primary.btn-lg.btn-block(href="#experts", role="button") Hablar con un experto
         
   .container
     if(success.length > 0)
       .alert.alert-success !{success}
     if (errors.length > 0)
       .alert.alert-danger !{errors}
-    h2#support Contactar soporte
+    h2#experts Contactate con nuestros expertos
     p.lead
-      | Hablá con un operador ahora mismo clickeando el botón de la derecha "Llamar a soporte". Si no podés hablar ahora, cargá un ticket con tu número y un agente se contactará con vos a la brevedad.
+      | Hablá con un experto ahora mismo clickeando el botón de la derecha "Llamar a experto". Si no podés hablar ahora, cargá un ticket con tu número y un experto se contactará con vos a la brevedad.
     .row
       .col-md-6.col-md-push-6
         .panel.panel-info.client-controls
           .panel-heading
-            h3.panel-title Hablar con soporte ahora
+            h3.panel-title Hablar con un experto ahora
           .panel-body
             p
               strong Estado
             #call-status.well.well-sm
               | Conectándose con servidor...
-            button.btn.btn-lg.btn-primary.call-button(onclick="callSupport()")
+            button.btn.btn-lg.btn-primary.call-expert-button(onclick="callExpert()")
               span.glyphicon.glyphicon-earphone(aria-hidden="true")
-              |  Llamar a soporte
+              |  Llamar a experto
             button.btn.btn-lg.btn-danger.hangup-button(disabled="", onclick="hangUp()") Colgar
       
       .col-md-6.col-md-pull-6

@@ -23,7 +23,7 @@ router.post('/connect', twilio.webhook({validate: false}), function(req, res, ne
   if (phoneNumber != null) {
     dial.number(phoneNumber);
   } else {
-    dial.client("support_agent");
+    dial.client("expert");
   }
 
   res.send(twiml.toString());

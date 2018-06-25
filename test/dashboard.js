@@ -5,7 +5,7 @@ var expect = require('chai').expect
   , app = require('../app.js')
   , Ticket = require('../models/ticket');
 
-describe('support', function () {
+describe('dashboard', function () {
   before(function (done) {
     Ticket.create({
       name: 'Ticket',
@@ -22,11 +22,11 @@ describe('support', function () {
     Ticket.remove({}, done);
   });
 
-  describe('GET /support', function () {
+  describe('GET /dashboard', function () {
     it('list all tickets', function (done) {
       var agent = supertest(app);
       agent
-        .get('/support')
+        .get('/dashboard')
         .expect(function (response) {
           expect(response.text).to.contain('Tickets');
           expect(response.text).to.contain('+567899043');

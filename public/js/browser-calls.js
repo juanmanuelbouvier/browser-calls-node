@@ -6,9 +6,9 @@
 // Store some selectors for elements we'll reuse
 var callStatus = $("#call-status");
 var answerButton = $(".answer-button");
-var callSupportButton = $(".call-support-button");
+var callExpertButton = $(".call-expert-button");
 var hangUpButton = $(".hangup-button");
-var callCustomerButtons = $(".call-customer-button");
+var callCustomerButton = $(".call-customer-button");
 
 /* Helper function to update the call status bar */
 function updateCallStatus(status) {
@@ -39,17 +39,17 @@ Twilio.Device.error(function (error) {
 Twilio.Device.connect(function (connection) {
   // Enable the hang up button and disable the call buttons
   hangUpButton.prop("disabled", false);
-  callCustomerButtons.prop("disabled", true);
-  callSupportButton.prop("disabled", true);
+  callCustomerButton.prop("disabled", true);
+  callExpertButton.prop("disabled", true);
   answerButton.prop("disabled", true);
 
-  // If phoneNumber is part of the connection, this is a call from a
-  // support agent to a customer's phone
+  // If phoneNumber is part of the connection, this is a call from an
+  // expert to a customer's phone
   if ("phoneNumber" in connection.message) {
     updateCallStatus("En llamada con " + connection.message.phoneNumber);
   } else {
-    // This is a call from a website user to a support agent
-    updateCallStatus("En llamada con soporte");
+    // This is a call from a website user to an expert
+    updateCallStatus("En llamada con experto");
   }
 });
 
@@ -57,15 +57,15 @@ Twilio.Device.connect(function (connection) {
 Twilio.Device.disconnect(function(connection) {
   // Disable the hangup button and enable the call buttons
   hangUpButton.prop("disabled", true);
-  callCustomerButtons.prop("disabled", false);
-  callSupportButton.prop("disabled", false);
+  callCustomerButton.prop("disabled", false);
+  callExpertButton.prop("disabled", false);
 
   updateCallStatus("Preparado");
 });
 
 /* Callback for when Twilio Client receives a new incoming call */
 Twilio.Device.incoming(function(connection) {
-  updateCallStatus("Entrando llamada de soporte");
+  updateCallStatus("Entrando llamada de cliente");
 
   // Set a callback to be executed when the connection is accepted
   connection.accept(function() {
@@ -79,7 +79,7 @@ Twilio.Device.incoming(function(connection) {
   answerButton.prop("disabled", false);
 });
 
-/* Call a customer from a support ticket */
+/* Call a customer from a ticket */
 function callCustomer(phoneNumber) {
   updateCallStatus("Llamando a " + phoneNumber + "...");
 
@@ -87,11 +87,11 @@ function callCustomer(phoneNumber) {
   Twilio.Device.connect(params);
 }
 
-/* Call the support_agent from the home page */
-function callSupport() {
-  updateCallStatus("Llamando a soporte...");
+/* Call the expert from the home page */
+function callExpert() {
+  updateCallStatus("Llamando a un experto...");
 
-  // Our backend will assume that no params means a call to support_agent
+  // Our backend will assume that no params means a call to expert
   Twilio.Device.connect();
 }
 
@@ -112,22 +112,22 @@ function initNewTicketForm() {
         data: formEl.serialize()
     })
     .done(function(){
-      showNotification("Support ticket was created successfully.", "success")
+      showNotification("El ticker fue creado éxitosamente.", "success")
       // clear form
       formEl.find("input[type=text], textarea").val("");
     })
     .fail(function(res) {
-      showNotification("Support ticket request failed. " + res.responseText, "danger")
+      showNotification("La creación del ticket falló. " + res.responseText, "danger")
     });
   });
 }
 
 function showNotification(text, style) {
   var alertStyle = "alert-"+style;
-  var alertEl = $(".alert.ticket-support-notifications");
+  var alertEl = $(".alert.ticket-notifications");
 
   if (alertEl.length == 0) {
-    alertEl = $("<div class=\"alert ticket-support-notifications\"></div>");
+    alertEl = $("<div class=\"alert ticket-notifications\"></div>");
     $("body").before(alertEl);
   }
 
@@ -142,6 +142,6 @@ function showNotification(text, style) {
 }
 
 function clearNotifications() {
-  var alertEl = $(".alert.ticket-support-notifications");
+  var alertEl = $(".alert.ticket-notifications");
   alertEl.remove();
 }

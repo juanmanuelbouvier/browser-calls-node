@@ -7,7 +7,7 @@ var Ticket = require('../models/ticket');
 router.get('/', function (req, res) {
   Ticket.find()
     .then(function (tickets) {
-      res.render('support/index', { tickets: tickets });
+      res.render('dashboard/index', { tickets: tickets });
     });
 });
 

@@ -27,7 +27,7 @@ describe('call', function () {
     });
 
     context('when connecting from an agent', function () {
-      it('response noun CLIENT and the text support-agent', function (done) {
+      it('response noun CLIENT and the text dashboard-agent', function (done) {
 
         var agent = supertest(app);
         agent
@@ -35,7 +35,7 @@ describe('call', function () {
         .expect(function (res) {
           var $ = cheerio.load(res.text);
           expect($('Dial').children('Client').length).to.equal(1);
-          expect($('Dial').children('Client').text()).to.equal("support_agent");
+          expect($('Dial').children('Client').text()).to.equal("expert");
         })
         .expect(200, done);
       });
