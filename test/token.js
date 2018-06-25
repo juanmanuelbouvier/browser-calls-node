@@ -9,7 +9,7 @@ describe('token', function () {
       agent
         .post('/token/generate')
         .send({
-          page: '/dashboard',
+          page: '/support',
         })
         .expect(function (response) {
           expect(response.text).to.contain('{"token":"');

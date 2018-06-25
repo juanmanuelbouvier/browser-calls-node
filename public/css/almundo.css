@@ -1,0 +1,37 @@
+/* Custom CSS for Almundo Twilio Demo */
+.almundo-background {
+  background-image: url(/img/almundo-travellers-community.jpg);
+  background-size: cover;
+  background-position: 75% 25%;
+}
+
+.almundo-text {
+  background-color:rgba(255,255,255,0.75);
+}
+
+@media (min-width: 768px) {
+  .almundo-text {
+    margin-right: 5%;
+    width: 40%;
+  }
+}
+
+.answer-button, .call-support-button {
+    width: 48%;
+    float: left;
+}
+
+.hangup-button {
+    width: 48%;
+    float: right;
+}
+
+.btn-block {
+    background-color: rgb(217, 107, 58);
+    border-color: rgb(217, 107, 58);
+}
+
+.call-button, .answer-button {
+    background-color: rgb(217, 107, 58);
+    border-color: rgb(217, 107, 58);
+}

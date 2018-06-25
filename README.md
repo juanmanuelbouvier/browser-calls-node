@@ -81,7 +81,7 @@ First you need to install
 
 1. To respond to support tickets (should open two windows or tabs).
 
-    [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
+    [http://localhost:3000/support](http://localhost:3000/support)
 
 ## Run the tests
 

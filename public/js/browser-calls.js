@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 /* Callback to let us know Twilio Client is ready */
 Twilio.Device.ready(function (device) {
-  updateCallStatus("Ready");
+  updateCallStatus("Preparado");
 });
 
 /* Report any errors to the call status display */
@@ -46,10 +46,10 @@ Twilio.Device.connect(function (connection) {
   // If phoneNumber is part of the connection, this is a call from a
   // support agent to a customer's phone
   if ("phoneNumber" in connection.message) {
-    updateCallStatus("In call with " + connection.message.phoneNumber);
+    updateCallStatus("En llamada con " + connection.message.phoneNumber);
   } else {
     // This is a call from a website user to a support agent
-    updateCallStatus("In call with support");
+    updateCallStatus("En llamada con soporte");
   }
 });
 
@@ -60,16 +60,16 @@ Twilio.Device.disconnect(function(connection) {
   callCustomerButtons.prop("disabled", false);
   callSupportButton.prop("disabled", false);
 
-  updateCallStatus("Ready");
+  updateCallStatus("Preparado");
 });
 
 /* Callback for when Twilio Client receives a new incoming call */
 Twilio.Device.incoming(function(connection) {
-  updateCallStatus("Incoming support call");
+  updateCallStatus("Entrando llamada de soporte");
 
   // Set a callback to be executed when the connection is accepted
   connection.accept(function() {
-    updateCallStatus("In call with customer");
+    updateCallStatus("En llamada con cliente");
   });
 
   // Set a callback on the answer button and enable it
@@ -81,7 +81,7 @@ Twilio.Device.incoming(function(connection) {
 
 /* Call a customer from a support ticket */
 function callCustomer(phoneNumber) {
-  updateCallStatus("Calling " + phoneNumber + "...");
+  updateCallStatus("Llamando a " + phoneNumber + "...");
 
   var params = {"phoneNumber": phoneNumber};
   Twilio.Device.connect(params);
@@ -89,7 +89,7 @@ function callCustomer(phoneNumber) {
 
 /* Call the support_agent from the home page */
 function callSupport() {
-  updateCallStatus("Calling support...");
+  updateCallStatus("Llamando a soporte...");
 
   // Our backend will assume that no params means a call to support_agent
   Twilio.Device.connect();
