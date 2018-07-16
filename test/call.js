@@ -35,7 +35,7 @@ describe('call', function () {
         .expect(function (res) {
           var $ = cheerio.load(res.text);
           expect($('Dial').children('Client').length).to.equal(1);
-          expect($('Dial').children('Client').text()).to.equal("expert");
+          expect($('Dial').children('Client').text()).to.equal("support_agent");
         })
         .expect(200, done);
       });

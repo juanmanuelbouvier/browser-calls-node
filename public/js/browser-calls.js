@@ -6,7 +6,7 @@
 // Store some selectors for elements we'll reuse
 var callStatus = $("#call-status");
 var answerButton = $(".answer-button");
-var callExpertButton = $(".call-expert-button");
+var callSupportButton = $(".call-support-button");
 var hangUpButton = $(".hangup-button");
 var callCustomerButton = $(".call-customer-button");
 
@@ -40,16 +40,16 @@ Twilio.Device.connect(function (connection) {
   // Enable the hang up button and disable the call buttons
   hangUpButton.prop("disabled", false);
   callCustomerButton.prop("disabled", true);
-  callExpertButton.prop("disabled", true);
+  callSupportButton.prop("disabled", true);
   answerButton.prop("disabled", true);
 
   // If phoneNumber is part of the connection, this is a call from an
-  // expert to a customer's phone
+  // operator to a customer's phone
   if ("phoneNumber" in connection.message) {
     updateCallStatus("En llamada con " + connection.message.phoneNumber);
   } else {
-    // This is a call from a website user to an expert
-    updateCallStatus("En llamada con experto");
+    // This is a call from a website user to support agent
+    updateCallStatus("En llamada con operador");
   }
 });
 
@@ -58,7 +58,7 @@ Twilio.Device.disconnect(function(connection) {
   // Disable the hangup button and enable the call buttons
   hangUpButton.prop("disabled", true);
   callCustomerButton.prop("disabled", false);
-  callExpertButton.prop("disabled", false);
+  callSupportButton.prop("disabled", false);
 
   updateCallStatus("Preparado");
 });
@@ -87,11 +87,11 @@ function callCustomer(phoneNumber) {
   Twilio.Device.connect(params);
 }
 
-/* Call the expert from the home page */
-function callExpert() {
-  updateCallStatus("Llamando a un experto...");
+/* Call support from the home page */
+function callSupport() {
+  updateCallStatus("Llamando a un operador...");
 
-  // Our backend will assume that no params means a call to expert
+  // Our backend will assume that no params means a call to support
   Twilio.Device.connect();
 }
 
