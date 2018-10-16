@@ -92,7 +92,8 @@ function callSupport() {
   updateCallStatus("Llamando a un operador...");
 
   // Our backend will assume that no params means a call to support
-  Twilio.Device.connect();
+  const params = {callerId: "DEMO_JUANMA", expertId: "123" };
+  Twilio.Device.connect(params);
 }
 
 /* End a call */

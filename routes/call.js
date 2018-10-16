@@ -29,4 +29,20 @@ router.post('/connect', twilio.webhook({validate: false}), function(req, res, ne
   res.send(twiml.toString());
 });
 
+router.post('/enqueue', twilio.webhook({validate: false}), function(req, res, next) {
+    const twiml = new VoiceResponse();
+
+    const json = { from: req.body.callerId, expert_id: req.body.expertId };
+    twiml
+        .enqueue({
+            workflowSid: 'WWdf028de9470acaccfcdf530fe1073f01',
+        }, "Experts")
+        .task({}, JSON.stringify(json));
+
+    console.log(twiml.toString());
+
+    res.setHeader('Content-Type', 'application/xml');
+    res.send(twiml.toString());
+});
+
 module.exports = router;
